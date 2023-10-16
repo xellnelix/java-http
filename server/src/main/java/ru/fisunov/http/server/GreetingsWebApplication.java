@@ -14,6 +14,6 @@ public class GreetingsWebApplication implements MyWebApplication {
     @Override
     public void execute(Request request, OutputStream output) throws IOException {
         String username = request.getParam("username");
-        output.write(("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<html><body><h1>" + name + "</h1><h2>Hello, " + username + "</h2></body></html>").getBytes(StandardCharsets.UTF_8));
+        output.write(("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<html><link rel=\"icon\" href=\"data:,\"><body><h1>" + name + "</h1><h2>Hello, " + username + "</h2></body></html>").getBytes(StandardCharsets.UTF_8));
     }
 }

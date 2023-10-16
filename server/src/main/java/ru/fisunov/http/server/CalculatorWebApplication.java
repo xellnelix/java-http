@@ -27,6 +27,6 @@ public class CalculatorWebApplication implements MyWebApplication {
         } else {
             result = "Unknown operation";
         }
-        output.write(("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<html><body><h1>" + name + "</h1><h2>" + result + "</h2></body></html>").getBytes(StandardCharsets.UTF_8));
+        output.write(("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<html><link rel=\"icon\" href=\"data:,\"><body><h1>" + name + "</h1><h2>" + result + "</h2></body></html>").getBytes(StandardCharsets.UTF_8));
     }
 }
