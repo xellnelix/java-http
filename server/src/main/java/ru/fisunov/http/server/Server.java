@@ -30,7 +30,10 @@ public class Server {
 		try (ServerSocket serverSocket = new ServerSocket(port)) {
 			router.put("/calculator", new CalculatorWebApplication());
 			router.put("/greetings", new GreetingsWebApplication());
-			logger.info("Сервер запущен");
+			router.put("/items", new ItemsWebApplication());
+			logger.info("Построен маппинг для точек назначения:");
+			router.entrySet().forEach(e -> logger.info(e.getKey() + ": " + e.getValue().getClass().getSimpleName()));
+			logger.info("Сервер готов к работе");
 			while (!serverSocket.isClosed()) {
 				Socket socket = serverSocket.accept();
 				logger.info("Клиент подключился");

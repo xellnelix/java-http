@@ -6,19 +6,26 @@ import org.apache.logging.log4j.Logger;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class Request {
 	private static final Logger logger = LogManager.getLogger(Request.class.getName());
 	private final String uri;
+	private final String raw;
 	private final Map<String, String> params;
+	private InputStream inputStream;
 
 	public String getUri() {
 		return uri;
 	}
 
-	public Request(String rawRequest) {
-		this.uri = parseUri(rawRequest);
-		this.params = parseGetRequestParams(rawRequest);
+	public Request(InputStream inputStream) throws IOException {
+		byte[] buffer = new byte[2048];
+		int n = inputStream.read(buffer);
+		this.raw = new String(buffer, 0, n);
+		this.uri = parseUri(raw);
+		this.params = parseGetRequestParams(raw);
 	}
 
 	private String parseUri(String request) {
